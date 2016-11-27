@@ -1,8 +1,7 @@
 #A program that returns live weather data of a particular city
 
-# urllib is a library that allows python to make api calls
-# json is a library that allows you to parse data that the api gives you
-# what is twilio?
+# urllib is a library that allows python to make API calls
+# JSON is a library that allows you to parse data that the API gives you
 import urllib.request
 import json
 from twilio.rest import TwilioRestClient
@@ -28,7 +27,7 @@ url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + k
 # This returns an object with JSON encoded data inside of it
 response = urllib.request.urlopen(url)
 
-# Use the Json library to parse the object into readable json data
+# Use the Json library to parse the object into readable JSON data
 # the workaround - decode
 parsedData = response.read().decode('utf-8')
 parsedData2 = json.loads(parsedData)
@@ -41,5 +40,5 @@ print (description, temp)
 
 # Customize the message
 customMsg = 'The weather in ' + str(city) + ' is ' + str(int(temp)) + ' degrees and ' + str(description)
-# Use twilio client object and twilio number to make the api call
+# Use twilio client object and twilio number to make the API call
 message = client.messages.create(to="+16472844490",from_="+16476949844", body=customMsg)
